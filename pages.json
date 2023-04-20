@@ -19,6 +19,12 @@
 			}
 		},
 		{
+			"path": "pages/mytask/uploadTask",
+			"style": {
+				"navigationBarTitleText": "拓练任务"
+			}
+		},
+		{
 			"path": "pages/effect/effect",
 			"style": {
 				"navigationBarTitleText": "成效分析"
