@@ -1,8 +1,8 @@
 import App from './App'
-
 // #ifndef VUE3
 import Vue from 'vue'
-import { ConfigProvider } from 'vant
+import Vant from 'vant';
+
 
 Vue.config.productionTip = false
 App.mpType = 'app'
@@ -34,10 +34,12 @@ try {
   });
 } catch (error) { }
 
+Vue.use(Vant)
 const app = new Vue({
   ...App
 })
-app.use(ConfigProvider)
+
+
 app.$mount()
 // #endif
 

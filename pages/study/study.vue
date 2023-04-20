@@ -1,9 +1,14 @@
 <template>
-	<view>学情</view>
+	<view>
+		<van-button type="primary">按钮</van-button>
+		
+	</view>
+
+
 </template>
 
 <script>
 </script>
 
-<style>
+<style lang="scss">
 </style>
