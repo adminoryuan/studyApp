@@ -1,9 +1,19 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/myinfo/myinfo",
+			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false,
+				"app-plus": {
+					"titleNView": false
+				}
+			}
+		},
+		{
+			"path": "pages/zhuceinfo/zhuceinfo",
+			"style": {
+				"navigationBarTitleText": "注册"
 			}
 		},
 		{
@@ -16,12 +26,6 @@
 			"path": "pages/mytask/index",
 			"style": {
 				"navigationBarTitleText": "任务"
-			}
-		},
-		{
-			"path": "pages/mytask/uploadTask",
-			"style": {
-				"navigationBarTitleText": "拓练任务"
 			}
 		},
 		{
