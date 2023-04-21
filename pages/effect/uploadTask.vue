@@ -21,6 +21,11 @@
 				title:''
 			}
 		},
+		methods:{
+			onSubmit(){
+				
+			}
+		},
 		onLoad(e){
 			this.taskInfo.title=e.title
 		}

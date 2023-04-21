@@ -1,12 +1,36 @@
 <template>
 	<view>
 
-		<van-tabs v-model="active"> 
-			<task>
-				<slot name="left"><van-button square text="上传成果" @click="handleUploadTask()" type="primary"
-							class="delete-button" /></slot>
-			</task>
-		</van-tabs>
+		
+			<van-tab title="基础任务单">
+				<van-swipe-cell>
+					<view class="goods-card">
+						<text class="title"><b>{{title}}</b></text>
+						<text class="van-multi-ellipsis--l3">{{desc}}</text>
+					</view>
+
+					<template #right>
+						<van-button square text="查看" type="danger" class="delete-button" />
+						<van-button square text="删除" type="primary" class="delete-button" />
+						<template slot="right">
+							
+						</template>
+					</template>
+					<template #left>
+						<template slot="left">
+							
+						</template>
+						<van-button square text="下载文件" type="danger" class="delete-button" />
+						
+						
+					</template>
+				</van-swipe-cell>
+			</van-tab>
+			<van-tab title="进阶任务单">
+				<van-empty description="暂无进阶任务单" />
+			</van-tab>
+
+		
 	</view>
 </template>
 
@@ -14,11 +38,10 @@
 	import {
 		Image as VanImage
 	} from 'vant';
-	import task from '../../componetns/task/task.vue';
 
 	export default {
 		components: {
-			VanImage: VanImage,task
+			VanImage: VanImage,
 		},
 		data() {
 			return {

@@ -3,11 +3,8 @@
 		{
 			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "登录",
-				"enablePullDownRefresh": false,
-				"app-plus": {
-					"titleNView": false
-				}
+				"navigationBarTitleText": "登录"
+				
 			}
 		},
 		{
@@ -29,10 +26,47 @@
 			}
 		},
 		{
+			"path": "pages/myinfo/myinfo",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
 			"path": "pages/effect/effect",
 			"style": {
 				"navigationBarTitleText": "成效分析"
 			}
+		},
+		{
+			"path": "pages/teacher/teacher",
+			"style": {
+				"navigationBarTitleText": "教师端"
+			}	
+		},
+		
+		{
+			"path": "pages/teacher/taskmager/taskmager",
+			"style": {
+				"navigationBarTitleText": "教师任务管理"
+			}	
+		},
+		{
+			"path": "pages/teacher/effect/effect",
+			"style": {
+				"navigationBarTitleText": "成效管理"
+			}	
+		},
+		{
+			"path": "pages/teacher/taskmager/uploadResult",
+			"style": {
+				"navigationBarTitleText": "成效管理"
+			}	
+		},
+		{
+			"path": "pages/teacher/effect/effermanager",
+			"style": {
+				"navigationBarTitleText": "成效管理"
+			}	
 		}
 	],
 	"tabBar": {
