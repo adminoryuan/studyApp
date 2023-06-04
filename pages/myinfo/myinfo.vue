@@ -4,10 +4,10 @@
 		<view class="avatar-myinfo">
 			<image class="avatar" type="user" src="../../static/header.jpg" size="80"></image>
 			<view class="myinfo">
-				<text class="name"><b>{{userInfo.name}}</b></text>
-				<text class="id">学号: {{userInfo.studentId}}</text>
+				<text class="name"><b>{{userInfo.nickName}}</b></text>
+				<text class="id">电话: {{userInfo.phonenumber}}</text>
 			</view>
-			<image class="logout" type="user" src="../../static/logout.png" size="80"></image>
+			<image class="logout" @click="logout" type="user" src="../../static/logout.png" size="80"></image>
 			
 		</view>
 	</view>
@@ -16,13 +16,18 @@
 			<van-icon size="25" name="../../static/xz.png" class="badge-icon" />
 			<text class="number">1枚</text>
 		</view>
-		 
+		  <roleTarbar></roleTarbar>
 		  
 	</view>
 </template>
 
 <script>
+	import tarbar from '../../componetns/tarbar.vue'
+	
 	export default {
+		components: {
+			roleTarbar:tarbar
+		},
 		data() {
 			return {
 				userInfo:{
@@ -30,6 +35,17 @@
 					studentId:"20040130213"
 				},
 				username: 'John'
+			}
+		},
+		mounted() {
+			this.userInfo=uni.getStorageSync('userInfo')
+			console.log(this.userInfo)
+		},
+		methods:{
+			logout(){
+				uni.reLaunch({
+					url:'/pages/login/login'
+				})
 			}
 		}
 	}

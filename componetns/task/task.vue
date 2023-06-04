@@ -12,6 +12,7 @@
 					<template #right>
 						<van-button square text="查看" type="danger" class="delete-button" />
 						<van-button square text="删除" type="primary" class="delete-button" />
+						<van-button square text="审批" type="danger" class="delete-button" />
 						<template slot="right">
 							
 						</template>
@@ -20,6 +21,8 @@
 						<template slot="left">
 							
 						</template>
+						<van-button square text="任务拓练" type="primary" class="delete-button" />
+						
 						<van-button square text="下载文件" type="danger" class="delete-button" />
 						
 						
@@ -60,7 +63,9 @@
 				uni.navigateTo({
 					url: '/pages/mytask/uploadTask'
 				})
+				
 			}
+			
 		},
 		onLoad() {
 

@@ -36,12 +36,21 @@
 			</van-tab>
 
 		</van-tabs>
+		<roleTarbar></roleTarbar>
+		
 	</view>
 </template>
 
+
 <script>
+		import tarbar from '../../componetns/tarbar.vue'
+
 	export default ({
+		components: {
+			roleTarbar:tarbar
+		},
 		data() {
+			
 			return {
 				showPicker:false,
 				active: 0,

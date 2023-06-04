@@ -3,8 +3,7 @@
 		<van-dropdown-menu>
 			<van-dropdown-item v-model="student" :options="stuList" />
 		</van-dropdown-menu>
-		<van-tabs v-model="active"> 
-
+		<van-tabs v-model="active">
 			<van-tab title="课前画像">
 				<van-form @submit="onSubmit">
 					<van-field name="uploader" label="能力测评分数">
@@ -14,9 +13,7 @@
 					</van-field>
 				</van-form>
 				<view class="study">
-					<image class="image" src="../../static/747.jpg">
-						
-					</image>
+					<image class="image" src="../../static/747.jpg"></image>
 					<view class="centent">
 						<view class="item">学生年龄 18</view>
 						<view class="item">生源类别: 三校生</view>
@@ -24,7 +21,6 @@
 						<view class="item">能力测评分数:18</view>
 					</view>
 				</view>
-
 			</van-tab>
 			<van-tab title="课后画像">
 				<van-form @submit="onSubmit">
@@ -35,23 +31,26 @@
 					</van-field>
 				</van-form>
 				<view class="study">
-					<image class="image" src="../../static/747.jpg">
-					</image>
+					<image class="image" src="../../static/747.jpg"></image>
 					<view class="centent">
-						<view>学生年龄 18</view>
-						<view>生源类别: 三校生</view>
-						<view>学习特点: 认真听讲 </view>
-						<view>能力测评分数:18</view>
+						<view class="item">学生年龄 18</view>
+						<view class="item">生源类别: 三校生</view>
+						<view class="item">学习特点: 认真听讲 </view>
+						<view class="item">能力测评分数:18</view>
 					</view>
 				</view>
 			</van-tab>
-
 		</van-tabs>
+		<roleTarbar></roleTarbar>
 	</view>
 </template>
 
 <script>
+	import tarbar from '../../componetns/tarbar.vue'
 	export default ({
+		components: {
+			roleTarbar: tarbar
+		},
 		data() {
 			return {
 				student: 0,
@@ -68,7 +67,6 @@
 						text: '王五',
 						value: 2
 					},
-
 				],
 				showPicker: false,
 				active: 0,
@@ -91,7 +89,6 @@
 			onCancel() {
 				this.showPicker = false
 			}
-
 		},
 		onLoad(e) {
 			this.taskInfo.title = e.title
@@ -99,22 +96,34 @@
 	})
 </script>
 
-<style lang="scss">
-	.study{
+<style lang="scss" scoped>
+	.study {
 		display: flex;
 		flex-direction: row;
-		align-items:center;
-		
-		.content{
-			width: 100%;
-			background-color: #fff;
-			.item{
-				
-			}
-		}
-		.image{
-			width:150px;
+		align-items: center;
+
+		.image {
+			width: 150px;
 			height: 150px;
+			margin-right: 20px;
+			border-radius: 10px;
+			box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+		}
+
+
+	}
+
+	.content {
+		
+		/* 添加背景色 */
+		flex-grow: 1;
+		background-color: #aaaa7f;
+		.item {
+			padding: 20px;
+			color: #aaaa7f;
+			background-color: #00aa00;
+			border-radius: 10px;
+			box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
 		}
 	}
 </style>

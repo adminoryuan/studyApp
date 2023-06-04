@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "学情",
+  "usingComponents": {
+    "role-tarbar": "/componetns/tarbar"
+  }
+}

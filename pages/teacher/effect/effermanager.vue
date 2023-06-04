@@ -1,50 +1,48 @@
 <template>
 	<view class="page">
-		<van-search v-model="value" placeholder="请输入学生姓名" />
+		<van-search v-model="queryParms.studentName" placeholder="请输入学生姓名" @input="search" />
 		<view class="list">
-			<view class="efferCard">
-				<text class="name"><b>李丝丝</b></text>
-				<van-tag type="primary" style="margin-left: 10rpx;">技能大赛获奖</van-tag>
+			<view class="efferCard" v-for="item in effectList">
+				<text class="name"><b>{{item.studentName}}</b></text>
+				<van-tag type="primary" style="margin-left: 10rpx;">{{getDictLabel('study_award_type',item.awardType)}}</van-tag>
 				
-				<text style="float: right;" class="time">2020年9月14日</text>
-				<view class="remake"> 今天,我获奖了。我能站在这个美丽的舞台上,来倾诉我的获奖感言,我感到很荣幸,在这里,我要感谢我的老师、家长..</view>
+				<text style="float: right;" class="time">{{item.awardTime}}</text>
+				<view class="remake">标题 :{{item.title}}</view>
+				<view class="remake">描述 :{{item.description}}</view>
 				<view class="opt">
-					<van-button type="info">查看</van-button>
-					<van-button type="info" @click="showScore">评分</van-button>
-
-				</view>
-			</view>
-			<view class="efferCard">
-				
-
-				<text class="name"><b>张三</b></text>
-				<van-tag type="primary" style="margin-left: 10rpx;">1+x证书</van-tag>
-				<text style="float: right;" class="time">2020年9月14日</text>
-				<view class="remake"> 今天,我获奖了。我能站在这个美丽的舞台上,来倾诉我的获奖感言,我感到很荣幸,在这里,我要感谢我的老师、家长..</view>
-				<view class="opt">
-					<van-button type="info">查看</van-button>
-					<van-button type="info" @click="showScore">评分</van-button>
-			
+					<van-button type="info" @click="toDetils(item.certificateUrl)">查看</van-button>
+					<van-button v-if="item.appove!=0" type="info" @click="showAppove(item.id)">查看评分</van-button>
+					<van-button v-else type="info" @click="showScore(item)">评分</van-button>
 				</view>
 			</view>
 		</view>
 		<van-popup v-model="scoreShow" @close="close" style="width: 80%;height: 40%;" closeable>
 			<van-cell-group>
-			  <van-field v-model="stuinfo.name" label="学生" disabled="true" placeholder="请输入用户名" />
-			  <van-field v-model="stuinfo.effectType" label="获奖类型" disabled="true" placeholder="请输入用户名" />
-			  <van-field v-model="stuinfo.score" label="评分" type="number" placeholder="请输入评分" />
-			  <van-field v-model="stuinfo.remake" label="备注" type="textarea" placeholder="请输入备注" />
-			  
+			  <van-field :disabled="true" v-model="scoreInfo.studentName" label="标题"  placeholder="请输入用户名" />
+			  <van-field :disabled="true" v-model="scoreInfo.effectName" label="获奖类型"  placeholder="获奖类型" />
+			  <van-field v-model="scoreInfo.score" label="评分" type="number" placeholder="请输入评分" />
+			  <van-field v-model="scoreInfo.remake" label="备注" type="textarea" placeholder="请输入备注" />
 			</van-cell-group>
 			<view>
 				<van-button @click="handleScore" style="width: 80%;margin-left: 10%" type="primary">确认评分</van-button>
 			</view>
 		</van-popup>
 		
+		<van-popup v-model="appoveShow" @close="close" style="width: 80%;height: 40%;" closeable>
+			<van-cell-group>
+			  <van-field :disabled="true" v-model="appoveInfo.title" label="教师"  placeholder="请输入用户名" />
+			  <van-field :disabled="true" v-model="appoveInfo.tearchName" label="评分教师"  placeholder="" />
+			  <van-field v-model="appoveInfo.score" label="评分" type="number" placeholder="请输入评分" />
+			  <van-field v-model="appoveInfo.comment" label="备注" type="textarea" placeholder="请输入备注" />
+			</van-cell-group>
+			<view>
+				<van-button @click="handleAppovce" style="width: 80%;margin-left: 10%" type="primary">修改评分</van-button>
+			</view>
+		</van-popup>
+		
 		<van-popup v-model="show"  >
 			
 		</van-popup>
-		<van-pagination  class="pagination" v-model="currentPage" :total-items="10" :items-per-page="5" />
 		
 	</view>
 </template>
@@ -54,26 +52,91 @@
 	export default({
 		data(){
 			return{
+				value:'',
 				show:false,
 				currentPage:1,
+				appoveShow:false,
 				scoreShow:false,
-				stuinfo:{
-					name:'张三',
-					effectType:'1+x中级证书'
-				}
+				appoveInfo:{},
+				scoreInfo:{
+					name:undefined,
+					certificateId:undefined,
+					effectType:undefined,
+				},
+				dictConfig:{
+					study_award_type:[]
+				},
+				queryParms:{
+					awardType:undefined,
+				},
+				effectList:[]
 			}
 		},
 		methods:{
+			handleAppovce(){
+				this.scoreShow=false;
+				console.log(this.appoveInfo)
+				this.$request('/system/approval',"put",this.appoveInfo).then(res=>{
+					this.appoveShow=false
+				})
+			},
+			search(){
+				this.list()
+			},
 			handleScore(){
 				this.scoreShow=false;
+				this.$request('/system/approval',"post",this.scoreInfo).then(res=>{
+					
+				})
 			},	
 			close(){
 				this.scoreShow=false;
 			},
-			showScore(){
+			showAppove(appoveId){
+				this.$request('/system/certificate/appove/'+appoveId,"get").then(res=>{
+					this.appoveInfo=res.data
+					this.appoveShow=true;
+				})
+			},
+			showScore(item){
+				console.log(item)
+				this.scoreInfo.certificateId=item.id;
+				this.scoreInfo.studentName=item.studentName;
+				this.scoreInfo.effectName=this.getDictLabel('study_award_type',item.awardType) ;
 				this.scoreShow=true;
+			},
+			toDetils(url){
+				uni.navigateTo({
+					url:'/pages/teacher/effect/effectDetils?url='+url
+				})
+			},
+			getDictLabel(dictType,dictValue) {
+			  const dictItem = this.dictConfig[dictType].find((item) => item.dictValue === dictValue);
+			  
+			  return dictItem ? dictItem.dictLabel : '';
+			},
+			dataDictory(){
+				this.$request('/system/dict/data/type/study_award_type',"get").then(res=>{
+					this.dictConfig.study_award_type=res.data
+				})
+			},
+			list(){
+				this.$request('/system/certificate/list',"get",this.queryParms).then(res=>{
+					this.effectList=res.rows
+				})
 			}
-		}
+		},
+		onLoad(e){
+			if(e.awardType){
+				this.queryParms.awardType=e.awardType
+			}
+			
+		},
+		onShow(){
+			this.list()
+			this.dataDictory()
+			
+		},
 	})
 </script>
 

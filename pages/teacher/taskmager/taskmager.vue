@@ -1,7 +1,10 @@
 <template>
+	<view>
 	<van-tabs v-model="active">
 	  <task>
 		  <slot name="right">
+			  <van-button square text="删除" type="primary" class="delete-button" />
+			  
 			  <van-button square @click="handleUploadResults" text="查看完成情况" type="danger" class="delete-button" />
 		  </slot>
 	  </task>
@@ -25,14 +28,18 @@
 	  	<van-picker show-toolbar :columns="taskType" @confirm="onConfirm" @cancel="showPicker = false" />
 	  </van-popup>
 	</van-tabs>
+	<roleTarbar></roleTarbar>
+	</view>
 </template>
 
 <script>
 	import task from '../../../componetns/task/task.vue';
-
+	import tarbar from '../../../componetns/tarbar.vue'
+	
 	export default {
 	 components:{
-		task 
+		task,
+		roleTarbar:tarbar
 	 },
 	  data() {
 	    return {
@@ -44,6 +51,8 @@
 			  file:[],
 			  desc:'',
 		  },
+		  taskList:[],
+		  queryParms:{},
 		  showPicker:false,
 	    };
 	  },
@@ -53,6 +62,14 @@
 		  },
 		  onSubmit(){
 			  
+		  },
+		  onLoad(){
+			 this.list()  
+		  },
+		  list(){
+			this.$request('/system/task/list',"get",this.queryParms).then(res=>{
+				this.taskList=res.rows
+			})  
 		  },
 		  onConfirm(val){
 			  this.taskInfo.taskType=val

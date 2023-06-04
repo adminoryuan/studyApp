@@ -14,17 +14,23 @@
 		  </van-grid-item>
 		  <van-grid-item>
 			  <van-grid-item icon="../../static/ndjn.png" text="劳动教育" />
-			  
 		  </van-grid-item>
 		  <van-grid-item>
 			  <van-grid-item icon="../../static/shfw.png" text="社会服务" />
 		  </van-grid-item>
 		</van-grid>
-
+		<roleTarbar :currentPage=1></roleTarbar>
 	</view>
+	
 </template>
 
 <script>
+	import tarbar from '../../componetns/tarbar.vue'
+	export default({
+		components: {
+			roleTarbar:tarbar
+		},
+	})
 </script>
 
 <style lang="scss">

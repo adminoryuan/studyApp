@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "成效管理",
+  "usingComponents": {
+    "role-tarbar": "/componetns/tarbar"
+  }
+}

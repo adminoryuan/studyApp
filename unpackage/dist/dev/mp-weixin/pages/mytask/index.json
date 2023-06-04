@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "任务",
+  "usingComponents": {
+    "van-image": "/node-modules/vant/es/index",
+    "task": "/componetns/task/task",
+    "role-tarbar": "/componetns/tarbar"
+  }
+}

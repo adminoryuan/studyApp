@@ -3,9 +3,15 @@ import App from './App'
 import Vue from 'vue'
 import Vant from 'vant';
 
-
+import request from './request.js'
+import getDictLabel from '@/utils/dictUtils.js'
+import FileUpload from '@/componetns/fileUpload.vue';
+Vue.component('FileUpload',FileUpload)
 Vue.config.productionTip = false
 App.mpType = 'app'
+Vue.prototype.$request = request 
+Vue.prototype.$getDictLabel = getDictLabel 
+
 try {
   function isPromise(obj) {
     return (
@@ -45,6 +51,7 @@ app.$mount()
 
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
+import fileUploadVue from './componetns/fileUpload.vue';
 export function createApp() {
   const app = createSSRApp(App)
   return {

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "教师任务管理",
+  "usingComponents": {
+    "task": "/componetns/task/task",
+    "role-tarbar": "/componetns/tarbar"
+  }
+}

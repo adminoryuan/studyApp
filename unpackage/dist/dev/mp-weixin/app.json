@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/zhuceinfo/zhuceinfo",
+    "pages/study/study",
+    "pages/mytask/index",
+    "pages/myinfo/myinfo",
+    "pages/teacher/effect/effect",
+    "pages/teacher/teacher",
+    "pages/effect/uploadTask",
+    "pages/teacher/taskmager/taskmager",
+    "pages/teacher/effect/effect",
+    "pages/teacher/taskmager/uploadResult",
+    "pages/teacher/effect/effermanager"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {}
+}

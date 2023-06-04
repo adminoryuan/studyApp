@@ -1,24 +1,26 @@
 <template>
 	<view>
-
 		<van-tabs v-model="active"> 
 			<task>
-				<slot name="left"><van-button square text="上传成果" @click="handleUploadTask()" type="primary"
-							class="delete-button" /></slot>
+				<slot name=""><van-button square text="上传成果" @click="handleUploadTask()" type="primary"
+					class="delete-button" /></slot>
 			</task>
 		</van-tabs>
+		<roleTarbar></roleTarbar>
 	</view>
 </template>
-
 <script>
 	import {
 		Image as VanImage
 	} from 'vant';
+	import tarbar from '../../componetns/tarbar.vue'
+	
 	import task from '../../componetns/task/task.vue';
 
 	export default {
 		components: {
-			VanImage: VanImage,task
+			VanImage: VanImage,task,
+			roleTarbar:tarbar
 		},
 		data() {
 			return {
