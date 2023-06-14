@@ -1,30 +1,31 @@
 <template>
   <view>
     <view class="article-list">
-      <view v-for="article in articles" :key="article.id" class="article-item" @click="toDetils(article.id)">
-        <view class="article-info">
+      <view v-for="article in articles" :key="article.id" class="article-item" >
+        <view class="article-info" @click="toDetils(article.id)">
           <image src="@/static/header.jpg" class="avatar" />
           <view class="article-title">{{ article.authorName }}</view>
 		  <text class="publish-time">{{ article.publishTime }}</text>
         </view>
 
         <view class="article-content">
-          <image width="100%"  mode="scaleToFill" :src="article.coverImage!=''?article.coverImage:'@/static/header.jpg'" class="cover-image" />
+          <image width="100%"  mode="scaleToFill" :src="article.coverImage!=''?'http://localhost:8081'+article.coverImage:'@/static/header.jpg'" class="cover-image" />
           <view class="title"> {{ truncateContent(article.title) }}</view>
         </view>
         <view class="article-footer">
           <view class="like-comment">
-			<view class="like-item">
-				<image src="@/static/like.png" class="meta-icon" />
-				<text class="meta-text">{{ article.likes }}</text>
+			<view class="like-item" @click="like(article)">
+				
+				<image :src="formatLikeImg(article.isiLke)" class="meta-icon" />
+				<text class="meta-text">{{ article.likeCnt }}</text>
 			</view>
-			<view class="like-item" click.native.stop="like(article)">
+			<view class="like-item" click="like(article)">
 				<image src="@/static/coment.png" class="meta-icon" />
-				<text class="meta-text">{{ article.comments }}</text>
+				<text class="meta-text">{{ article.commentCnt }}</text>
 			</view>
-			<view class="like-item" @click.native.prevent="share(article)">
+			<view class="like-item" @click="share(article)">
 				<image src="@/static/navtion.png" class="meta-icon" />
-				<text class="meta-text">{{ article.forward }}</text>
+				<text class="meta-text"></text>
 			</view>
           </view>
         </view>
@@ -69,8 +70,17 @@ export default {
     };
   },
   methods: {
+	formatLikeImg(checkd){
+		if(checkd){
+			return require('@/static/tolike.png')
+		}
+		return require('@/static/like.png')
+	},
 	like(item){
-		
+		this.$request('/system/likes/like',"post",{"blogId":item.id}).then(res=>{
+			this.list()
+		})
+		console.log(item)
 	},
 	share(item){
 		uni.share({
@@ -112,10 +122,14 @@ export default {
     },
 	list(){
 		this.$request('/articles/list',"get").then(res=>{
-			this.articles=res.data
+			this.articles=res.rows
+			uni.hideLoading()
 		})
 	},
 	onLoad(){
+		uni.showLoading({
+			title:'正在加载'
+		})
 		this.list()
 	}
   }
@@ -161,6 +175,7 @@ export default {
 
 .article-footer {
   display: flex;
+  
   align-items: center;
   justify-content: space-between;
   margin-top: 10px;

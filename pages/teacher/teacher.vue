@@ -4,42 +4,7 @@
 			<van-dropdown-item v-model="student" :options="stuList" />
 		</van-dropdown-menu>
 		<van-tabs v-model="active">
-			<van-tab title="课前画像">
-				<van-form @submit="onSubmit">
-					<van-field name="uploader" label="能力测评分数">
-						<template #input>
-							<van-uploader upload-icon="add" v-model="uploader" />
-						</template>
-					</van-field>
-				</van-form>
-				<view class="study">
-					<image class="image" src="../../static/747.jpg"></image>
-					<view class="centent">
-						<view class="item">学生年龄 18</view>
-						<view class="item">生源类别: 三校生</view>
-						<view class="item">学习特点: 认真听讲 </view>
-						<view class="item">能力测评分数:18</view>
-					</view>
-				</view>
-			</van-tab>
-			<van-tab title="课后画像">
-				<van-form @submit="onSubmit">
-					<van-field name="uploader" label="能力测评分数">
-						<template #input>
-							<van-uploader upload-icon="add" v-model="uploader" />
-						</template>
-					</van-field>
-				</van-form>
-				<view class="study">
-					<image class="image" src="../../static/747.jpg"></image>
-					<view class="centent">
-						<view class="item">学生年龄 18</view>
-						<view class="item">生源类别: 三校生</view>
-						<view class="item">学习特点: 认真听讲 </view>
-						<view class="item">能力测评分数:18</view>
-					</view>
-				</view>
-			</van-tab>
+			
 		</van-tabs>
 		<roleTarbar></roleTarbar>
 	</view>
@@ -55,19 +20,7 @@
 			return {
 				student: 0,
 				uploader: [],
-				stuList: [{
-						text: '张三',
-						value: 0
-					},
-					{
-						text: '李四',
-						value: 1
-					},
-					{
-						text: '王五',
-						value: 2
-					},
-				],
+				stuList: [],
 				showPicker: false,
 				active: 0,
 				taskInfo: {},
@@ -75,6 +28,11 @@
 			}
 		},
 		methods: {
+			studentList(){
+				this.$request("/system/abilities/students","get").then(res=>{
+					console.log(res)
+				})
+			},
 			onSubmit() {
 
 			},
@@ -92,6 +50,7 @@
 		},
 		onLoad(e) {
 			this.taskInfo.title = e.title
+			this.studentList()
 		}
 	})
 </script>

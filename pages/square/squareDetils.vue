@@ -7,7 +7,7 @@
         <view class="author-name">{{ articleInfo.authorName }}</view>
         <view class="publish-time">{{ formatDate(articleInfo.publishTime) }}</view>
       </view>
-      <view class="content">{{ articleInfo.content }}</view>
+      <view class="content" v-html="articleInfo.content"></view>
     </view>
     <view class="comment-section">
       <!-- <view class="comment-header">评论区</view>
@@ -90,11 +90,20 @@ export default {
       }
     },
 	articlesInfo(){
+		uni.showLoading({
+			title:'正在加载！'
+		})
 		this.$request('/articles/'+this.articleId,"get").then(res=>{
 			this.articleInfo=res.data
+			uni.hideLoading()
 		})
 	},
 	onLoad(e){
+		if(!e.id){
+			uni.navigateTo({
+				url: '/pages/square/square'
+			})
+		}
 		this.articleId=e.id
 		this.articlesInfo()
 	}
@@ -115,6 +124,7 @@ export default {
 }
 
 .author-info {
+	pointer-events: none;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
