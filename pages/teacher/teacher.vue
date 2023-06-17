@@ -11,13 +11,19 @@
 				<canvas canvas-id="canvasRadar" id="canvasRadar" class="charts"></canvas>
 			</view>
 		</view>
+		<roleTarbar></roleTarbar>
 	</view>
 </template>
 <script>
 	import uCharts from '@/plugins/stan-ucharts/u-charts/u-charts.js';
+	import tarbar from '../../componetns/tarbar.vue'
+	
 	var _self;
 	var canvaRadar = null;
 	export default {
+		components: {
+			roleTarbar:tarbar
+		},
 		data() {
 			return {
 				cWidth: '',

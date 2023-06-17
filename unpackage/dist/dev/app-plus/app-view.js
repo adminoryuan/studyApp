@@ -1516,6 +1516,7 @@ var render = function () {
         ],
         1
       ),
+      _c("roleTarbar", { attrs: { _i: 23 } }),
     ],
     1
   )
@@ -1552,17 +1553,21 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 59);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _tarbar = _interopRequireDefault(__webpack_require__(/*! ../../componetns/tarbar.vue */ 60));
 var _default = {
   data: function data() {
     return {
       wxsProps: {}
     };
   },
-  components: {}
+  components: {
+    'roleTarbar': _tarbar.default
+  }
 };
 exports.default = _default;
 
@@ -1614,7 +1619,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../devTools/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.article-list {\r\n  padding: 10px;\n}\n.article-item {\r\n  background-color: #fff;\r\n  border-radius: 5px;\r\n  margin-bottom: 20px;\r\n  padding: 10px;\r\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n.article-info {\r\n  margin-bottom: 10px;\r\n  display: flex;\r\n  align-items: center;\n}\n.article-title {\r\n  font-size: 18px;\r\n  font-weight: bold;\r\n  margin-left: 10px;\n}\n.article-content {\r\n  font-size: 14px;\r\n  color: #666;\r\n  line-height: 1;\r\n  height: 10em;\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  display: -webkit-box;\r\n  -webkit-line-clamp: 3; /* 显示3行 */\r\n  -webkit-box-orient: vertical;\n}\n.article-footer {\r\n  display: flex;\r\n  \r\n  align-items: center;\r\n  justify-content: space-between;\r\n  margin-top: 10px;\n}\n.meta-icon {\r\n  width: 16px;\r\n  height: 16px;\r\n  margin-right: 4px;\n}\n.meta-text {\r\n  font-size: 14px;\r\n  color: #666;\n}\n.like-item{\r\n\tdisplay: flex;\r\n\talign-items: center;\n}\n.like-comment {\r\n   display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n    width: 100%;\n}\n.title{\r\n\tmax-height: 10%;\r\n\tfont-weight: bold;\r\n\tfont-size: 14px;\r\n\tcolor: #666;\n}\n.publish-time {\r\n  font-size: 14px;\r\n  color: #999;\r\n  position: absolute;\r\n  right: 1%;\n}\n.avatar {\r\n  width: 30px;\r\n  height: 30px;\r\n  border-radius: 50%;\n}\n.floating-button {\r\n  position: fixed;\r\n  bottom: 20px;\r\n  right: 20px;\r\n  width: 60px;\r\n  height: 60px;\r\n  background-color: #fff;\r\n  border-radius: 50%;\r\n  display: flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\r\n  z-index: 999;\r\n  cursor: pointer;\n}\n.floating-icon {\r\n  width: 30px;\r\n  height: 30px;\n}\n.cover-image {\r\n  width: 100%;\r\n  height: 80%; /* 调整封面图片的高度 */\r\n  border-radius: 5px;\r\n  object-fit: cover; /* 修改封面图片的显示方式为覆盖 */\n}\r\n", ""]);
+exports.push([module.i, "\n.article-list {\n\tpadding: 10px;\n}\n.article-item {\n\tbackground-color: #fff;\n\tborder-radius: 5px;\n\tmargin-bottom: 20px;\n\tpadding: 10px;\n\tbox-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n.article-info {\n\tmargin-bottom: 10px;\n\tdisplay: flex;\n\talign-items: center;\n}\n.article-title {\n\tfont-size: 18px;\n\tfont-weight: bold;\n\tmargin-left: 10px;\n}\n.article-content {\n\tfont-size: 14px;\n\tcolor: #666;\n\tline-height: 1;\n\theight: 10em;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\tdisplay: -webkit-box;\n\t-webkit-line-clamp: 3;\n\t/* 显示3行 */\n\t-webkit-box-orient: vertical;\n}\n.article-footer {\n\tdisplay: flex;\n\n\talign-items: center;\n\tjustify-content: space-between;\n\tmargin-top: 10px;\n}\n.meta-icon {\n\twidth: 16px;\n\theight: 16px;\n\tmargin-right: 4px;\n}\n.meta-text {\n\tfont-size: 14px;\n\tcolor: #666;\n}\n.like-item {\n\tdisplay: flex;\n\talign-items: center;\n}\n.like-comment {\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: space-between;\n\twidth: 100%;\n}\n.title {\n\tmax-height: 10%;\n\tfont-weight: bold;\n\tfont-size: 14px;\n\tcolor: #666;\n}\n.publish-time {\n\tfont-size: 14px;\n\tcolor: #999;\n\tposition: absolute;\n\tright: 1%;\n}\n.avatar {\n\twidth: 30px;\n\theight: 30px;\n\tborder-radius: 50%;\n}\n.floating-button {\n\tposition: fixed;\n\tbottom: 20px;\n\tright: 20px;\n\twidth: 60px;\n\theight: 60px;\n\tbackground-color: #fff;\n\tborder-radius: 50%;\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tbox-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n\tz-index: 999;\n\tcursor: pointer;\n}\n.floating-icon {\n\twidth: 30px;\n\theight: 30px;\n}\n.cover-image {\n\twidth: 100%;\n\theight: 80%;\n\t/* 调整封面图片的高度 */\n\tborder-radius: 5px;\n\tobject-fit: cover;\n\t/* 修改封面图片的显示方式为覆盖 */\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -29061,6 +29066,7 @@ var render = function () {
         ],
         1
       ),
+      _c("roleTarbar", { attrs: { _i: 8 } }),
     ],
     1
   )
@@ -29097,17 +29103,21 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 
 
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 59);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _tarbar = _interopRequireDefault(__webpack_require__(/*! ../../componetns/tarbar.vue */ 60));
 var _default = {
   data: function data() {
     return {
       wxsProps: {}
     };
   },
-  components: {}
+  components: {
+    'roleTarbar': _tarbar.default
+  }
 };
 exports.default = _default;
 
@@ -29159,7 +29169,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../devTools/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*样式的width和height一定要与定义的cWidth和cHeight相对应*/\n.qiun-charts {\n\twidth: 750upx;\n\theight: 500upx;\n\tbackground-color: #FFFFFF;\n}\n.body{\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: antiquewhite;\n}\n.qiun-columns{\n\tpadding-top: 20%;\n}\n.charts {\n\twidth: 750upx;\n\theight: 500upx;\n\tbackground-color: #FFFFFF;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*样式的width和height一定要与定义的cWidth和cHeight相对应*/\n.qiun-charts {\n\twidth: 750upx;\n\theight: 500upx;\n\tbackground-color: #FFFFFF;\n}\n.body{\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: antiquewhite;\n}\n.qiun-columns{\n\tpadding-top: 20%;\n}\n.charts {\n\twidth: 750upx;\n\theight: 500upx;\n\tbackground-color: #FFFFFF;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
