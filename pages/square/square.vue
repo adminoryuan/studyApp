@@ -8,7 +8,7 @@
 					<text class="publish-time">{{ article.publishTime }}</text>
 				</view>
 
-				<view class="article-content">
+				<view class="article-content" @click="toDetils(article.id)">
 					<image width="100%" mode="scaleToFill"
 						:src="article.coverImage!=''?'http://localhost:8081'+article.coverImage:'@/static/header.jpg'"
 						class="cover-image" />
@@ -82,12 +82,13 @@
 			formatLikeImg(checkd) {
 				if (checkd) {
 					return require('@/static/tolike.png')
-				}
+				}	
 				return require('@/static/like.png')
 			},
 			like(item) {
 				uni.showLoading({
-					title: '等待响应'
+					title: '等待响应',
+					mask:true
 				})
 				this.$request('/system/likes/like', "post", {
 					"blogId": item.id
@@ -242,7 +243,7 @@
 
 	.floating-button {
 		position: fixed;
-		bottom: 20px;
+		bottom: 20%;
 		right: 20px;
 		width: 60px;
 		height: 60px;

@@ -1368,6 +1368,11 @@ var render = function () {
                 {
                   staticClass: _vm._$g("7-" + $30, "sc"),
                   attrs: { _i: "7-" + $30 },
+                  on: {
+                    click: function ($event) {
+                      return _vm.$handleViewEvent($event)
+                    },
+                  },
                 },
                 [
                   _c("v-uni-image", {
@@ -1619,7 +1624,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../devTools/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.article-list {\n\tpadding: 10px;\n}\n.article-item {\n\tbackground-color: #fff;\n\tborder-radius: 5px;\n\tmargin-bottom: 20px;\n\tpadding: 10px;\n\tbox-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n.article-info {\n\tmargin-bottom: 10px;\n\tdisplay: flex;\n\talign-items: center;\n}\n.article-title {\n\tfont-size: 18px;\n\tfont-weight: bold;\n\tmargin-left: 10px;\n}\n.article-content {\n\tfont-size: 14px;\n\tcolor: #666;\n\tline-height: 1;\n\theight: 10em;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\tdisplay: -webkit-box;\n\t-webkit-line-clamp: 3;\n\t/* 显示3行 */\n\t-webkit-box-orient: vertical;\n}\n.article-footer {\n\tdisplay: flex;\n\n\talign-items: center;\n\tjustify-content: space-between;\n\tmargin-top: 10px;\n}\n.meta-icon {\n\twidth: 16px;\n\theight: 16px;\n\tmargin-right: 4px;\n}\n.meta-text {\n\tfont-size: 14px;\n\tcolor: #666;\n}\n.like-item {\n\tdisplay: flex;\n\talign-items: center;\n}\n.like-comment {\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: space-between;\n\twidth: 100%;\n}\n.title {\n\tmax-height: 10%;\n\tfont-weight: bold;\n\tfont-size: 14px;\n\tcolor: #666;\n}\n.publish-time {\n\tfont-size: 14px;\n\tcolor: #999;\n\tposition: absolute;\n\tright: 1%;\n}\n.avatar {\n\twidth: 30px;\n\theight: 30px;\n\tborder-radius: 50%;\n}\n.floating-button {\n\tposition: fixed;\n\tbottom: 20px;\n\tright: 20px;\n\twidth: 60px;\n\theight: 60px;\n\tbackground-color: #fff;\n\tborder-radius: 50%;\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tbox-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n\tz-index: 999;\n\tcursor: pointer;\n}\n.floating-icon {\n\twidth: 30px;\n\theight: 30px;\n}\n.cover-image {\n\twidth: 100%;\n\theight: 80%;\n\t/* 调整封面图片的高度 */\n\tborder-radius: 5px;\n\tobject-fit: cover;\n\t/* 修改封面图片的显示方式为覆盖 */\n}\n", ""]);
+exports.push([module.i, "\n.article-list {\n\tpadding: 10px;\n}\n.article-item {\n\tbackground-color: #fff;\n\tborder-radius: 5px;\n\tmargin-bottom: 20px;\n\tpadding: 10px;\n\tbox-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n.article-info {\n\tmargin-bottom: 10px;\n\tdisplay: flex;\n\talign-items: center;\n}\n.article-title {\n\tfont-size: 18px;\n\tfont-weight: bold;\n\tmargin-left: 10px;\n}\n.article-content {\n\tfont-size: 14px;\n\tcolor: #666;\n\tline-height: 1;\n\theight: 10em;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\tdisplay: -webkit-box;\n\t-webkit-line-clamp: 3;\n\t/* 显示3行 */\n\t-webkit-box-orient: vertical;\n}\n.article-footer {\n\tdisplay: flex;\n\n\talign-items: center;\n\tjustify-content: space-between;\n\tmargin-top: 10px;\n}\n.meta-icon {\n\twidth: 16px;\n\theight: 16px;\n\tmargin-right: 4px;\n}\n.meta-text {\n\tfont-size: 14px;\n\tcolor: #666;\n}\n.like-item {\n\tdisplay: flex;\n\talign-items: center;\n}\n.like-comment {\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: space-between;\n\twidth: 100%;\n}\n.title {\n\tmax-height: 10%;\n\tfont-weight: bold;\n\tfont-size: 14px;\n\tcolor: #666;\n}\n.publish-time {\n\tfont-size: 14px;\n\tcolor: #999;\n\tposition: absolute;\n\tright: 1%;\n}\n.avatar {\n\twidth: 30px;\n\theight: 30px;\n\tborder-radius: 50%;\n}\n.floating-button {\n\tposition: fixed;\n\tbottom: 20%;\n\tright: 20px;\n\twidth: 60px;\n\theight: 60px;\n\tbackground-color: #fff;\n\tborder-radius: 50%;\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tbox-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n\tz-index: 999;\n\tcursor: pointer;\n}\n.floating-icon {\n\twidth: 30px;\n\theight: 30px;\n}\n.cover-image {\n\twidth: 100%;\n\theight: 80%;\n\t/* 调整封面图片的高度 */\n\tborder-radius: 5px;\n\tobject-fit: cover;\n\t/* 修改封面图片的显示方式为覆盖 */\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -29169,7 +29174,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../devTools/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*样式的width和height一定要与定义的cWidth和cHeight相对应*/\n.qiun-charts {\n\twidth: 750upx;\n\theight: 500upx;\n\tbackground-color: #FFFFFF;\n}\n.body{\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: antiquewhite;\n}\n.qiun-columns{\n\tpadding-top: 20%;\n}\n.charts {\n\twidth: 750upx;\n\theight: 500upx;\n\tbackground-color: #FFFFFF;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/*样式的width和height一定要与定义的cWidth和cHeight相对应*/\n.qiun-charts {\n\twidth: 750upx;\n\theight: 500upx;\n\tbackground-color: #antiquewhite;\n}\nbody{\n\theight: 100%;\n\twidth: 100%;\n\tbackground-color: antiquewhite;\n}\n.qiun-columns{\n\tpadding-top: 20%;\n\tbackground-color: antiquewhite;\n}\n.charts {\n\twidth: 750upx;\n\theight: 500upx;\n\tbackground-color: #antiquewhite;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

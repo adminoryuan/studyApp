@@ -124,21 +124,21 @@
 	.qiun-charts {
 		width: 750upx;
 		height: 500upx;
-		background-color: #FFFFFF;
+		background-color: #antiquewhite;
 	}
-	.body{
+	page{
 		height: 100%;
 		width: 100%;
 		background-color: antiquewhite;
 	}
 	.qiun-columns{
 		padding-top: 20%;
-		
+		background-color: antiquewhite;
 		
 	}
 	.charts {
 		width: 750upx;
 		height: 500upx;
-		background-color: #FFFFFF;
+		background-color: #antiquewhite;
 	}
 </style>
