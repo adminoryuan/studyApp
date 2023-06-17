@@ -3,6 +3,7 @@
 		<van-search v-model="queryParms.studentName" placeholder="请输入学生姓名" @input="search" />
 		<view class="list">
 			<view class="efferCard" v-for="item in effectList">
+				<image src="@/static/header.jpg" class="avatar" />
 				<text class="name"><b>{{item.studentName}}</b></text>
 				<van-tag type="primary" style="margin-left: 10rpx;">{{getDictLabel('study_award_type',item.awardType)}}</van-tag>
 				
@@ -85,15 +86,19 @@
 			},
 			handleScore(){
 				this.scoreShow=false;
+				console.log(this.scoreInfo)
 				this.$request('/system/approval',"post",this.scoreInfo).then(res=>{
-					
+					uni.showToast({
+						title:'评分成功'
+					})
+					this.list()
 				})
 			},	
 			close(){
 				this.scoreShow=false;
 			},
 			showAppove(appoveId){
-				this.$request('/system/certificate/appove/'+appoveId,"get").then(res=>{
+				this.$request('/system/approval/5',"get").then(res=>{
 					this.appoveInfo=res.data
 					this.appoveShow=true;
 				})
@@ -124,7 +129,8 @@
 				this.$request('/system/certificate/list',"get",this.queryParms).then(res=>{
 					this.effectList=res.rows
 				})
-			}
+			},
+			
 		},
 		onLoad(e){
 			if(e.awardType){
@@ -135,6 +141,7 @@
 		onShow(){
 			this.list()
 			this.dataDictory()
+			
 			
 		},
 	})
@@ -172,6 +179,11 @@
 				}
 				
 			}
+		}
+		.avatar {
+		  width: 30px;
+		  height: 30px;
+		  border-radius: 50%;
 		}
 		.pagination{
 			position: absolute;

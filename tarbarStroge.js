@@ -7,12 +7,6 @@ export let student = [
 		"text": "学情"
 	},
 	{
-		"pagePath": "/pages/mytask/index",
-		"iconPath": "static/icon/task.png",
-		"selectedIconPath": "static/icon/task.png",
-		"text": "任务"
-	},
-	{
 		"pagePath": "/pages/square/square",
 		"iconPath": "static/icon/logo.png",
 		"selectedIconPath": "static/icon/logo.png",
@@ -44,12 +38,6 @@ export let teacher = [
 		"iconPath": "static/icon/study.png",
 		"selectedIconPath": "static/icon/study.png",
 		"text": "广场"
-	},
-	{
-		"pagePath": "/pages/teacher/taskmager/taskmager",
-		"iconPath": "static/icon/task.png",
-		"selectedIconPath": "static/icon/task.png",
-		"text": "任务"
 	},
 	{
 		"pagePath": "/pages/teacher/effect/effect",

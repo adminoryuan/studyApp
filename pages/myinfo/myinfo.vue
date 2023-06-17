@@ -11,10 +11,12 @@
 			
 		</view>
 	</view>
-		<view class="badge">
-			<text>五星徽章</text>
-			<van-icon size="25" name="../../static/xz.png" class="badge-icon" />
-			<text class="number">1枚</text>
+		<view class="bedges">
+			<view class="badge" v-for="item in badgeList">
+				<text>{{item.badgeName}}</text>
+				<van-icon size="40" :name="fomartImg(item.badgeImage)" class="badge-icon" />
+			</view>
+			
 		</view>
 		  <roleTarbar></roleTarbar>
 		  
@@ -23,13 +25,14 @@
 
 <script>
 	import tarbar from '../../componetns/tarbar.vue'
-	
+	import {BASE_URL} from '@/request.js'
 	export default {
 		components: {
 			roleTarbar:tarbar
 		},
 		data() {
 			return {
+				badgeList:[],
 				userInfo:{
 					name:"张三",
 					studentId:"20040130213"
@@ -40,11 +43,21 @@
 		mounted() {
 			this.userInfo=uni.getStorageSync('userInfo')
 			console.log(this.userInfo)
+			this.selectBadgs()
 		},
 		methods:{
+			fomartImg(src){
+				return BASE_URL+src
+			},
 			logout(){
 				uni.reLaunch({
 					url:'/pages/login/login'
+				})
+			},
+			selectBadgs(){
+				this.$request('/study/records/my-badge',"get").then(res=>{
+					this.badgeList=res.data
+					console.log(res)
 				})
 			}
 		}
@@ -69,6 +82,10 @@
 		  font-size: 10px;
 		  line-height: 30px;
 		}
+	}
+	.bedges{
+		height:40%;
+		overflow-y: auto;
 	}
 	
 	.name{

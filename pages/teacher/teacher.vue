@@ -1,28 +1,28 @@
 <template>
-	<view>
-		<van-dropdown-menu @change="handleDropdownChange">
-			<van-dropdown-item v-model="student" :options="stuList" />
+	<view >
+		<van-dropdown-menu>
+			<van-dropdown-item v-model="student" @change="handleDropdownChange" :options="stuList" />
 		</van-dropdown-menu>
-
-		
-			<canvas id="radar-chart" class="body" ref="radarChart"></canvas>
-		
-
-		<roleTarbar></roleTarbar>
+		<view class="qiun-columns">
+			<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
+				<view class="qiun-title-dot-light"></view>
+			</view>
+			<view class="qiun-charts">
+				<canvas canvas-id="canvasRadar" id="canvasRadar" class="charts"></canvas>
+			</view>
+		</view>
 	</view>
 </template>
-
 <script>
-	import tarbar from '../../componetns/tarbar.vue'
-	import * as echarts from '@/static/echarts.js'
-
+	import uCharts from '@/plugins/stan-ucharts/u-charts/u-charts.js';
+	var _self;
+	var canvaRadar = null;
 	export default {
-		components: {
-			roleTarbar: tarbar
-		},
-		
 		data() {
 			return {
+				cWidth: '',
+				cHeight: '',
+				pixelRatio: 1,
 				student: '',
 				uploader: [],
 				stuList: [],
@@ -32,11 +32,15 @@
 				title: ''
 			}
 		},
-		watch:{
+		onLoad() {
+			_self = this;
+			this.cWidth = uni.upx2px(750);
+			this.cHeight = uni.upx2px(500);
+			this.studentList()
 			
 		},
 		methods: {
-			handleDropdownChange(){
+			handleDropdownChange() {
 				console.log("ss")
 				this.studyInfo()
 			},
@@ -49,14 +53,14 @@
 							value: item.studentNumber
 						}
 					})
-					this.student = this.stuList[2].value
+					this.student = this.stuList[0].value
 					this.studyInfo()
 				})
 			},
 			studyInfo() {
 				this.$request('/system/abilities/last/' + this.student, "get").then(res => {
-					this.studyData=res.data
-					this.initChart()
+					this.studyData = res.data
+					this.initChats()
 				})
 			},
 			onConfirm(value) {
@@ -67,110 +71,68 @@
 			onCancel() {
 				this.showPicker = false
 			},
-			initChart() {
-				const canvas = this.$refs.radarChart.$el
-				const chart = echarts.init(canvas)
-
-				const option = {
-					title: {
-						text: '学情雷达图'
-					},
-					grid: {
-						width: '80%',
-						height: '300rpx'
-					},
-					radar: {
-						indicator: [{
-								name: '沟通能力',
-								max: 1
-							},
-							{
-								name: '创造力与创新能力',
-								max: 1
-							},
-							{
-								name: '实践能力',
-								max: 1
-							},
-							{
-								name: '专业技能',
-								max: 1
-							},
-							{
-								name: '自主学习能力',
-								max: 1
-							},
-							{
-								name: '自我管理能力',
-								max: 1
-							}
-						]
-					},
+			initChats() {
+				const Radar = {
+					categories: ['沟通能力', '创造力与创新能力', '实践能力', '专业技能', '自主学习能力', '自我管理能力'],
 					series: [{
-						type: 'radar',
-						data: [{
-							value: [
-								this.studyData.communicationAbility, // communicationAbility
-								this.studyData.creativityAndInnovationAbility,
-								this.studyData.practicalAbility,
-								this.studyData.professionalSkill,
-								this.studyData.selfLearningAbility,
-								this.studyData.selfManagementAbility,
-							],
-							name: '袁浩'
-						}]
+						name: this.student,
+						data: [
+							this.studyData.communicationAbility, // communicationAbility
+							this.studyData.creativityAndInnovationAbility,
+							this.studyData.practicalAbility,
+							this.studyData.professionalSkill,
+							this.studyData.selfLearningAbility,
+							this.studyData.selfManagementAbility,
+						]
 					}]
-				};
-
-
-				chart.setOption(option)
-
-
+				}
+				_self.showRadar("canvasRadar", Radar);
+			},
+			showRadar(canvasId, chartData) {
+				canvaRadar = new uCharts({
+					$this: _self,
+					canvasId: canvasId,
+					type: 'radar',
+					fontSize: 11,
+					legend: true,
+					background: '#FFFFFF',
+					pixelRatio: _self.pixelRatio,
+					animation: true,
+					dataLabel: true,
+					categories: chartData.categories,
+					series: chartData.series,
+					width: _self.cWidth * _self.pixelRatio,
+					height: _self.cHeight * _self.pixelRatio,
+					extra: {
+						radar: {
+							max: 200 //雷达数值的最大值
+						}
+					}
+				});
 			}
-		},
-		onReady() {
-			this.$nextTick(() => {
-				this.initChart()
-			})
-		},
-		onLoad(e) {
-			// this.taskInfo.title = e.title
-			this.studentList()
 		}
 	}
 </script>
-
-<style lang="scss" scoped>
-	.study {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-
-		.image {
-			width: 150px;
-			height: 150px;
-			margin-right: 20px;
-			border-radius: 10px;
-			box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
-		}
+<style>
+	/*样式的width和height一定要与定义的cWidth和cHeight相对应*/
+	.qiun-charts {
+		width: 750upx;
+		height: 500upx;
+		background-color: #FFFFFF;
 	}
-
-	.body {
+	.body{
+		height: 100%;
+		width: 100%;
+		background-color: antiquewhite;
+	}
+	.qiun-columns{
 		padding-top: 20%;
-		padding-left: 10%;
+		
+		
 	}
-
-	.content {
-		/* 添加背景色 */
-		flex-grow: 1;
-		background-color: #aaaa7f;
-
-		.item {
-			padding: 20px;
-			color: #aaaa7f;
-			background-color: #00aa00;
-			border-radius: 10px;
-			box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
-		}
+	.charts {
+		width: 750upx;
+		height: 500upx;
+		background-color: #FFFFFF;
 	}
 </style>

@@ -49,9 +49,7 @@
 		},
 		methods: {
 			getDictLabel(dictType, dictValue) {
-				
 				const dictItem = this.dictConfig[dictType].find((item) => item.dictValue == dictValue);
-				console.log(dictItem)
 				return dictItem ? dictItem.dictLabel : '';
 			},
 			dataDictory() {

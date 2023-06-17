@@ -35,10 +35,12 @@
       <image src="@/static/publish.png" class="floating-icon" />
     </view>
   </view>
+  
 </template>
 
 <script>
 export default {
+   
    
   data() {
     return {
@@ -77,8 +79,12 @@ export default {
 		return require('@/static/like.png')
 	},
 	like(item){
+		uni.showLoading({
+			title:'等待响应'
+		})
 		this.$request('/system/likes/like',"post",{"blogId":item.id}).then(res=>{
 			this.list()
+			uni.hideLoading()
 		})
 		console.log(item)
 	},
