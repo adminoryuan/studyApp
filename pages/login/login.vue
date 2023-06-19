@@ -85,7 +85,7 @@
 							console.log(teacher)
 							uni.setStorageSync("tabBarList",teacher)
 							uni.navigateTo({
-								url: '/pages/study/study'
+								url: '/pages/teacher/teacher'
 							})
 						}
 					})

@@ -14,6 +14,18 @@
 			}
 		},
 		{
+			"path": "pages/knowledge/index",
+			"style": {
+				"navigationBarTitleText": "知识库"
+			}
+		},
+		{
+			"path": "pages/knowledge/knowledgeInfo",
+			"style": {
+				"navigationBarTitleText": "知识库"
+			}
+		},
+		{
 			"path": "pages/square/square",
 			"style": {
 				"navigationBarTitleText": "广场",

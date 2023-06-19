@@ -2,26 +2,26 @@
 export let student = [
 	{
 		"pagePath": "/pages/study/study",
-		"iconPath": "static/icon/study.png",
-		"selectedIconPath": "static/icon/study.png",
+		"iconPath": "static/icon/Overview.png",
+		"selectedIconPath": "static/icon/Overview.png",
 		"text": "学情"
 	},
 	{
 		"pagePath": "/pages/square/square",
-		"iconPath": "static/icon/logo.png",
-		"selectedIconPath": "static/icon/logo.png",
+		"iconPath": "static/icon/User Groups.png",
+		"selectedIconPath": "static/icon/User Groups.png",
 		"text": "广场"
 	},
 	{
 		"pagePath": "/pages/effect/effect",
-		"iconPath": "static/icon/effect.png",
-		"selectedIconPath": "static/icon/effect.png",
+		"iconPath": "static/icon/Reports.png",
+		"selectedIconPath": "static/icon/Reports.png",
 		"text": "成效"
 	},
 	{
 		"pagePath": "/pages/myinfo/myinfo",
-		"iconPath": "static/icon/myinfo.png",
-		"selectedIconPath": "static/icon/myinfo.png",
+		"iconPath": "static/icon/Profile.png",
+		"selectedIconPath": "static/icon/Profile.png",
 		"text": "我的"
 	}
 ]
@@ -29,26 +29,26 @@ export let student = [
 export let teacher = [
 	{
 		"pagePath": "/pages/teacher/teacher",
-		"iconPath": "static/icon/study.png",
-		"selectedIconPath": "static/icon/study.png",
+		"iconPath": "static/icon/Overview.png",
+		"selectedIconPath": "static/icon/Overview.png",
 		"text": "学情"
 	},
 	{
 		"pagePath": "/pages/square/square",
-		"iconPath": "static/icon/study.png",
-		"selectedIconPath": "static/icon/study.png",
+		"iconPath": "static/icon/User Groups.png",
+		"selectedIconPath": "static/icon/User Groups.png",
 		"text": "广场"
 	},
 	{
 		"pagePath": "/pages/teacher/effect/effect",
-		"iconPath": "static/icon/effect.png",
-		"selectedIconPath": "static/icon/effect.png",
+		"iconPath": "static/icon/Reports.png",
+		"selectedIconPath": "static/icon/Reports.png",
 		"text": "成效"
 	},
 	{
 		"pagePath": "/pages/myinfo/myinfo",
-		"iconPath": "static/icon/myinfo.png",
-		"selectedIconPath": "static/icon/myinfo.png",
+		"iconPath": "static/icon/Profile.png",
+		"selectedIconPath": "static/icon/Profile.png",
 		"text": "我的"
 	}
 ]

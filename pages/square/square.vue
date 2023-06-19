@@ -3,14 +3,14 @@
 		<view class="article-list">
 			<view v-for="article in articles" :key="article.id" class="article-item">
 				<view class="article-info" @click="toDetils(article.id)">
-					<image src="@/static/header.jpg" class="avatar" />
+					<image :src="article.authorImg" class="avatar" />
 					<view class="article-title">{{ article.authorName }}</view>
 					<text class="publish-time">{{ article.publishTime }}</text>
 				</view>
 
 				<view class="article-content" @click="toDetils(article.id)">
 					<image width="100%" mode="scaleToFill"
-						:src="article.coverImage!=''?'http://localhost:8081'+article.coverImage:'@/static/header.jpg'"
+						:src="article.coverImage"
 						class="cover-image" />
 					<view class="title"> {{ truncateContent(article.title) }}</view>
 				</view>
@@ -34,10 +34,10 @@
 			</view>
 		</view>
 		<view class="floating-button" @click="publishArticle">
-			<image src="@/static/publish.png" class="floating-icon" />
+			<image src="@/static/Send message.png" class="floating-icon" />
 		</view>
 		<roleTarbar></roleTarbar>
-		
+
 	</view>
 
 </template>
@@ -82,13 +82,13 @@
 			formatLikeImg(checkd) {
 				if (checkd) {
 					return require('@/static/tolike.png')
-				}	
+				}
 				return require('@/static/like.png')
 			},
 			like(item) {
 				uni.showLoading({
 					title: '等待响应',
-					mask:true
+					mask: true
 				})
 				this.$request('/system/likes/like', "post", {
 					"blogId": item.id
@@ -154,7 +154,9 @@
 
 <style>
 	.article-list {
-		padding: 10px;
+		padding: 10rpx;
+		padding-bottom: 100rpx;
+		height: 80%;
 	}
 
 	.article-item {

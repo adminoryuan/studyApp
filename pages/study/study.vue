@@ -1,83 +1,144 @@
 <template>
-	<view>
-		<van-popup v-model="showPicker" round  position="bottom"> 
-			<van-picker   @confirm="onConfirm"
-						  @cancel="onCancel"
-						  @change="onChange" 
-						  show-toolbar
-						  title="生源类别"  
-						  :columns="columns" />
-			</van-popup>
-		<van-tabs v-model="active">
-			<van-tab title="课前画像">
-				<van-form @submit="onSubmit">
-					<van-field v-model="taskInfo.age" type="number" name="" label="学生年龄" placeholder="学生年龄" />
-					<van-field v-model="taskInfo.stuType" @click="showPicker=true" type="number" name="" label="生源类别" placeholder="生源类别" />
-
-					<van-field v-model="taskInfo.remake" type="number" name="" label="学习特点" placeholder="学习特点" />
-
-					<div style="margin: 16px;">
-						<van-button round block type="info" native-type="submit">提交</van-button>
-					</div>
-				</van-form>
-
-			</van-tab>
-			<van-tab title="课后画像">
-				<van-form @submit="onSubmit">
-					<van-field v-model="taskInfo.age" type="number" name="" label="学生年龄" placeholder="学生年龄" />
-					<van-field v-model="taskInfo.stuType" @click="showPicker=true" type="number" name="" label="生源类别" placeholder="生源类别" />
-				
-					<van-field v-model="taskInfo.remake" type="number" name="" label="学习特点" placeholder="学习特点" />
-				
-					<div style="margin: 16px;">
-						<van-button round block type="info" native-type="submit">提交</van-button>
-					</div>
-				</van-form>
-			</van-tab>
-
-		</van-tabs>
+	<view >
+		<van-dropdown-menu>
+			<van-dropdown-item v-model="student" @change="handleDropdownChange" :options="stuList" />
+		</van-dropdown-menu>
+		<view class="qiun-columns">
+			<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
+				<view class="qiun-title-dot-light"></view>
+			</view>
+			<view class="qiun-charts">
+				<canvas canvas-id="canvasRadar" id="canvasRadar" class="charts"></canvas>
+			</view>
+		</view>
 		<roleTarbar></roleTarbar>
-		
 	</view>
 </template>
-
-
 <script>
-		import tarbar from '../../componetns/tarbar.vue'
-
-	export default ({
+	import uCharts from '@/plugins/stan-ucharts/u-charts/u-charts.js';
+	import tarbar from '../../componetns/tarbar.vue'
+	
+	var _self;
+	var canvaRadar = null;
+	export default {
 		components: {
 			roleTarbar:tarbar
 		},
 		data() {
-			
 			return {
-				showPicker:false,
+				cWidth: '',
+				cHeight: '',
+				pixelRatio: 1,
+				student: '',
+				uploader: [],
+				stuList: [],
+				showPicker: false,
 				active: 0,
-				columns: ['普高生', '三校生', '兵役退伍', '百万扩招'],
-				taskInfo: {},
+				studyData: {},
 				title: ''
 			}
 		},
-		methods:{
-			onConfirm(value){
-				console.log(value)
-				this.taskInfo.stuType=value
-				this.showPicker=false
-			},
-			onChange(e){
-			
-			},
-			onCancel(){
-				this.showPicker=false
-			}
+		onLoad() {
+			_self = this;
+			this.cWidth = uni.upx2px(750);
+			this.cHeight = uni.upx2px(500);
+			this.studentList()
 			
 		},
-		onLoad(e) {
-			this.taskInfo.title = e.title
+		methods: {
+			handleDropdownChange() {
+				console.log("ss")
+				this.studyInfo()
+			},
+			studentList() {
+				this.$request("/system/abilities/mystudents", "get").then(res => {
+					console.log(res)
+					this.stuList = res.data.map(item => {
+						return {
+							text: item.studentName + '(' + item.classRoom + ')',
+							value: item.studentNumber
+						}
+					})
+					this.student = this.stuList[0].value
+					this.studyInfo()
+				})
+			},
+			studyInfo() {
+				this.$request('/system/abilities/last/' + this.student, "get").then(res => {
+					this.studyData = res.data
+					this.initChats()
+				})
+			},
+			onConfirm(value) {
+				console.log(value)
+				this.taskInfo.stuType = value
+				this.showPicker = false
+			},
+			onCancel() {
+				this.showPicker = false
+			},
+			initChats() {
+				const Radar = {
+					categories: ['沟通能力', '创造力与创新能力', '实践能力', '专业技能', '自主学习能力', '自我管理能力'],
+					series: [{
+						name: this.student,
+						data: [
+							this.studyData.communicationAbility, // communicationAbility
+							this.studyData.creativityAndInnovationAbility,
+							this.studyData.practicalAbility,
+							this.studyData.professionalSkill,
+							this.studyData.selfLearningAbility,
+							this.studyData.selfManagementAbility,
+						]
+					}]
+				}
+				_self.showRadar("canvasRadar", Radar);
+			},
+			showRadar(canvasId, chartData) {
+				canvaRadar = new uCharts({
+					$this: _self,
+					canvasId: canvasId,
+					type: 'radar',
+					fontSize: 11,
+					legend: true,
+					background: '#FFFFFF',
+					pixelRatio: _self.pixelRatio,
+					animation: true,
+					dataLabel: true,
+					categories: chartData.categories,
+					series: chartData.series,
+					width: _self.cWidth * _self.pixelRatio,
+					height: _self.cHeight * _self.pixelRatio,
+					extra: {
+						radar: {
+							max: 200 //雷达数值的最大值
+						}
+					}
+				});
+			}
 		}
-	})
+	}
 </script>
-
-<style lang="scss">
+<style>
+	/*样式的width和height一定要与定义的cWidth和cHeight相对应*/
+	.qiun-charts {
+		width: 750upx;
+		height: 500upx;
+		background-color: #antiquewhite;
+	}
+	page{
+		height: 100%;
+		width: 100%;
+		background-color: antiquewhite;
+	}
+	.qiun-columns{
+		padding-top: 20%;
+		background-color: antiquewhite;
+		
+	}
+	.charts {
+		width: 750upx;
+		height: 500upx;
+		background-color: #antiquewhite;
+	}
 </style>
