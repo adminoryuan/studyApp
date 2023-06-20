@@ -4,7 +4,7 @@ export let student = [
 		"pagePath": "/pages/study/study",
 		"iconPath": "static/icon/Overview.png",
 		"selectedIconPath": "static/icon/Overview.png",
-		"text": "学情"
+		"text": "我的学情"
 	},
 	{
 		"pagePath": "/pages/square/square",

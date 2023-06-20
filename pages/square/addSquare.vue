@@ -2,15 +2,15 @@
 	<view>
 		<van-form @submit="onSubmit">
 			<van-field v-model="taskInfo.title" name="" label="文章标题" placeholder="任务标题" />
-			<van-field name="uploader" label="封面">
+			<van-field name="uploader" style="height:300rpx ;" label="封面">
 				<template #input>
 					  <file-upload @upload-success="handleUploadSuccess"  />
 				</template>
 			</van-field>
-			<van-field v-model="taskInfo.content" rows="10" autosize label="留言" type="textarea" placeholder="请输入留言" />
-			<div style="margin: 16px;">
+			<van-field v-model="taskInfo.content" rows="10" autosize label="内容" type="textarea" placeholder="请输入内容" />
+			<view style="position:fixed;bottom:50rpx;width:90%;margin: 16px;">
 				<van-button round block type="info" native-type="submit">发布文章</van-button>
-			</div>
+			</view>
 		</van-form>
 	</view>
 </template>

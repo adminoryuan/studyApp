@@ -34,7 +34,7 @@
 		data() {
 			return {
 				userinfo: {
-					username: "张怡",
+					username: "学生2",
 					password: "123456",
 					code: undefined,
 					uuid: undefined,
@@ -78,6 +78,7 @@
 						let role=res.roles[0]
 						console.log(role)
 						if (role == 'student') {
+							uni.setStorageSync("tabBarList",student)
 							uni.navigateTo({
 								url: '/pages/study/study'
 							})

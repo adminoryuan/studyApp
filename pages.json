@@ -26,6 +26,24 @@
 			}
 		},
 		{
+			"path": "pages/effect/effect",
+			"style": {
+				"navigationBarTitleText": "成效分析"
+			}
+		},
+		{
+			"path": "pages/effect/effectInfo",
+			"style": {
+				"navigationBarTitleText": "成效详情"
+			}
+		},
+		{
+			"path": "pages/effect/effermanager",
+			"style": {
+				"navigationBarTitleText": "成效管理"
+			}
+		},
+		{
 			"path": "pages/square/square",
 			"style": {
 				"navigationBarTitleText": "广场",
@@ -84,9 +102,9 @@
 			}	
 		},
 		{
-			"path": "pages/effect/uploadTask",
+			"path": "pages/effect/uploadEffect",
 			"style": {
-				"navigationBarTitleText": "上传任务"
+				"navigationBarTitleText": "上传证书"
 			}	
 		},
 		{

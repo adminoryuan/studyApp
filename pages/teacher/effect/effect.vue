@@ -58,8 +58,8 @@
 				})
 			},
 			gotoEfferInfo(awardType) {
-				let url='/pages/teacher/effect/effermanager'
-				console.log(awardType)
+				let url='/pages/effect/effectInfo'
+				
 				if(awardType!=undefined ){
 					url+='?awardType='+awardType
 				}

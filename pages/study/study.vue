@@ -1,8 +1,5 @@
 <template>
 	<view >
-		<van-dropdown-menu>
-			<van-dropdown-item v-model="student" @change="handleDropdownChange" :options="stuList" />
-		</van-dropdown-menu>
 		<view class="qiun-columns">
 			<view class="qiun-bg-white qiun-title-bar qiun-common-mt">
 				<view class="qiun-title-dot-light"></view>
@@ -42,7 +39,7 @@
 			_self = this;
 			this.cWidth = uni.upx2px(750);
 			this.cHeight = uni.upx2px(500);
-			this.studentList()
+			this.studyInfo()
 			
 		},
 		methods: {
@@ -50,21 +47,8 @@
 				console.log("ss")
 				this.studyInfo()
 			},
-			studentList() {
-				this.$request("/system/abilities/mystudents", "get").then(res => {
-					console.log(res)
-					this.stuList = res.data.map(item => {
-						return {
-							text: item.studentName + '(' + item.classRoom + ')',
-							value: item.studentNumber
-						}
-					})
-					this.student = this.stuList[0].value
-					this.studyInfo()
-				})
-			},
 			studyInfo() {
-				this.$request('/system/abilities/last/' + this.student, "get").then(res => {
+				this.$request('/system/abilities/mystudents', "get").then(res => {
 					this.studyData = res.data
 					this.initChats()
 				})
@@ -81,7 +65,7 @@
 				const Radar = {
 					categories: ['沟通能力', '创造力与创新能力', '实践能力', '专业技能', '自主学习能力', '自我管理能力'],
 					series: [{
-						name: this.student,
+						name: this.studyData.studentNumber,
 						data: [
 							this.studyData.communicationAbility, // communicationAbility
 							this.studyData.creativityAndInnovationAbility,

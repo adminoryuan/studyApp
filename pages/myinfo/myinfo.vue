@@ -5,7 +5,7 @@
 				<image class="avatar" type="user" src="../../static/header.jpg" size="80"></image>
 				<view class="myinfo">
 					<text class="name"><b>{{userInfo.nickName}}</b></text>
-					<text class="id">电话: {{userInfo.phonenumber}}</text>
+					<text class="id">学号: {{userInfo.studentNumber}}</text>
 				</view>
 				<image class="logout" @click="logout" type="user" src="../../static/logout.png" size="80"></image>
 
