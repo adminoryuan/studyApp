@@ -11,12 +11,12 @@
 				<view class="article-content" @click="toDetils(item.id)">
 					<view class="title"> {{ truncateContent(item.title) }}</view>
 				</view>
-				
+
 			</view>
 		</view>
-		
+
 		<roleTarbar></roleTarbar>
-		
+
 	</view>
 
 </template>
@@ -25,7 +25,10 @@
 	import tarbar from '../../componetns/tarbar.vue'
 
 	export default {
-
+		onReady() {
+			const a = document.getElementsByClassName('uni-page-head-hd')[0]
+			a.style.display = 'none';
+		},
 		components: {
 			roleTarbar: tarbar
 		},
@@ -38,10 +41,10 @@
 			formatLikeImg(checkd) {
 				if (checkd) {
 					return require('@/static/tolike.png')
-				}	
+				}
 				return require('@/static/like.png')
 			},
-			
+
 			toDetils(id) {
 				console.log(id)
 				uni.navigateTo({

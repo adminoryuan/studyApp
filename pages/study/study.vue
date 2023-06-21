@@ -42,7 +42,14 @@
 			this.studyInfo()
 			
 		},
+		onReady() {
+			const a = document.getElementsByClassName('uni-page-head-hd')[0]
+			a.style.display = 'none';
+		},
 		methods: {
+			onNavigationBarButtonTap() {
+			  // 空函数，不执行任何操作
+			},
 			handleDropdownChange() {
 				console.log("ss")
 				this.studyInfo()

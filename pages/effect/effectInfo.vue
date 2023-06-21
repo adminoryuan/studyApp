@@ -3,6 +3,7 @@
         <view id="web-info" style="width: 100%;height: 100%;">
             <web-view :src="pdfUrl"></web-view>
         </view>
+		<roleTarbar></roleTarbar>
     </view>
 </template>
 

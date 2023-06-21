@@ -98,7 +98,7 @@
 				this.scoreShow=false;
 			},
 			showAppove(appoveId){
-				this.$request('/system/approval/5',"get").then(res=>{
+				this.$request('/system/approval/'+appoveId,"get").then(res=>{
 					this.appoveInfo=res.data
 					this.appoveShow=true;
 				})

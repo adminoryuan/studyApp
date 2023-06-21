@@ -6,7 +6,10 @@ import Vant from 'vant';
 import request from './request.js'
 import getDictLabel from '@/utils/dictUtils.js'
 import FileUpload from '@/componetns/fileUpload.vue';
+import tarbar from '@/componetns/tarbar.vue'
+
 Vue.component('FileUpload',FileUpload)
+Vue.component('roleTarbar',tarbar)
 Vue.config.productionTip = false
 App.mpType = 'app'
 Vue.prototype.$request = request 

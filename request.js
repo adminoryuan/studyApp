@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:8081'; // 设置基础URL
+export const BASE_URL = 'http://43.143.249.38:8081'; // 设置基础URL
 
 function request(url, method, data) {
   // 从缓存中获取token

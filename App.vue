@@ -1,6 +1,17 @@
 <script>
 	
 	export default {
+		 onLaunch() {
+		
+		    uni.onBackPress(function() {
+		
+		      // 阻止返回操作
+		
+		      return false;
+		
+		    });
+		
+		},
 		components:{
 			
 		},

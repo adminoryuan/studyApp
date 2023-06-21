@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<view class="login">
-			<view style="position: absolute;right: 2%;">快速注册</view>
+			<!-- <view style="position: absolute;right: 2%;">快速注册</view> -->
 			<text style="float: left;width: 100%;margin:10%;font-weight: 1000;font-size:20px;">账号密码登录</text>
 			<van-form @submit="handleLogin">
 				<van-field v-model="userinfo.username" name="" label="用户名" placeholder=""

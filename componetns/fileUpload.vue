@@ -5,12 +5,13 @@
 </template>
 
 <script>
+	import {BASE_URL} from '@/request.js'
 export default {
   name: 'FileUpload',
   
   data() {
     return {
-	 uploadUrl: 'http://localhost:8081/common/upload',
+	  uploadUrl: BASE_URL+'/common/upload',
       previewUrl: ''
     };
   },

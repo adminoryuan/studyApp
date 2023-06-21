@@ -49,6 +49,10 @@
 				username: 'John'
 			}
 		},
+		onReady() {
+			const a = document.getElementsByClassName('uni-page-head-hd')[0]
+			a.style.display = 'none';
+		},
 		mounted() {
 			this.userInfo = uni.getStorageSync('userInfo')
 			console.log(this.userInfo)
@@ -57,7 +61,10 @@
 		methods: {
 			toKnowLedge(){
 				uni.redirectTo({
-					url:'/pages/knowledge/knowledgeInfo'
+					url:'/pages/knowledge/index'
+				})
+				uni.navigateTo({
+					
 				})
 			},
 			fomartImg(src) {

@@ -27,6 +27,7 @@
       </view>
     </view> -->
 	</view>
+	<roleTarbar></roleTarbar>
   </view>
 </template>
 

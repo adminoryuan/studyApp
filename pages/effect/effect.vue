@@ -12,11 +12,11 @@
 					<van-grid-item icon="../../static/xz.png" text="全部" />
 				</van-badge>
 			</van-grid-item>
-			<van-grid-item @click="gotoUpload()">
+			<!-- <van-grid-item @click="gotoUpload()">
 				<van-badge content="">
 					<van-grid-item icon="../../static/shfw.png" text="上传" />
 				</van-badge>
-			</van-grid-item>
+			</van-grid-item> -->
 			<!-- <van-grid-item>
 				<van-grid-item icon="../../static/bs.png" text="学生技能大赛" />
 			</van-grid-item>
@@ -44,18 +44,22 @@
 		data() {
 			return {
 				effectList: [],
-				dictConfig:{
-					study_award_type:[]
+				dictConfig: {
+					study_award_type: []
 				}
 			}
+		},
+		onReady() {
+			const a = document.getElementsByClassName('uni-page-head-hd')[0]
+			a.style.display = 'none';
 		},
 		components: {
 			roleTarbar: tarbar,
 		},
 		methods: {
-			gotoUpload(){
+			gotoUpload() {
 				uni.reLaunch({
-					url:'/pages/effect/uploadEffect'
+					url: '/pages/effect/uploadEffect'
 				})
 			},
 			getDictLabel(dictType, dictValue) {
@@ -68,10 +72,10 @@
 				})
 			},
 			gotoEfferInfo(awardType) {
-				let url='/pages/effect/effermanager'
-				
-				if(awardType!=undefined ){
-					url+='?awardType='+awardType
+				let url = '/pages/effect/effermanager'
+
+				if (awardType != undefined) {
+					url += '?awardType=' + awardType
 				}
 				uni.navigateTo({
 					url: url

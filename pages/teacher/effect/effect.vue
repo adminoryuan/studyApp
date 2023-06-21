@@ -47,6 +47,10 @@
 		components: {
 			roleTarbar: tarbar,
 		},
+		onReady() {
+			const a = document.getElementsByClassName('uni-page-head-hd')[0]
+			a.style.display = 'none';
+		},
 		methods: {
 			getDictLabel(dictType, dictValue) {
 				const dictItem = this.dictConfig[dictType].find((item) => item.dictValue == dictValue);
@@ -58,7 +62,7 @@
 				})
 			},
 			gotoEfferInfo(awardType) {
-				let url='/pages/effect/effectInfo'
+				let url='pages/teacher/effect/effectDetils'
 				
 				if(awardType!=undefined ){
 					url+='?awardType='+awardType

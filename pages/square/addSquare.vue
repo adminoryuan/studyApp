@@ -4,7 +4,7 @@
 			<van-field v-model="taskInfo.title" name="" label="文章标题" placeholder="任务标题" />
 			<van-field name="uploader" style="height:300rpx ;" label="封面">
 				<template #input>
-					  <file-upload @upload-success="handleUploadSuccess"  />
+					<file-upload @upload-success="handleUploadSuccess"  />
 				</template>
 			</van-field>
 			<van-field v-model="taskInfo.content" rows="10" autosize label="内容" type="textarea" placeholder="请输入内容" />
@@ -12,6 +12,7 @@
 				<van-button round block type="info" native-type="submit">发布文章</van-button>
 			</view>
 		</van-form>
+		<roleTarbar></roleTarbar>
 	</view>
 </template>
 
