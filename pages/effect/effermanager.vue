@@ -230,7 +230,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-
 	}
 
 	.title {
@@ -244,7 +243,7 @@
 		width: 60px;
 		height: 60px;
 		border-radius: 50%;
-		background-color: #ccc;
+		background-color: #ccba8b;
 		display: flex;
 		justify-content: center;
 		align-items: center;

@@ -1,0 +1,1 @@
+scp -r h5 root@43.143.249.38:/www/server/nginx/html/

@@ -7,6 +7,10 @@ import request from './request.js'
 import getDictLabel from '@/utils/dictUtils.js'
 import FileUpload from '@/componetns/fileUpload.vue';
 import tarbar from '@/componetns/tarbar.vue'
+import { ImagePreview } from 'vant';
+
+// 全局注册
+Vue.use(ImagePreview);
 
 Vue.component('FileUpload',FileUpload)
 Vue.component('roleTarbar',tarbar)

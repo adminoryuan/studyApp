@@ -2,7 +2,7 @@
 	<view>
 		<van-form @submit="onSubmit">
 			<van-field v-model="taskInfo.title" name="" label="文章标题" placeholder="任务标题" />
-			<van-field name="uploader" style="height:300rpx ;" label="封面">
+			<van-field name="uploader" style="height:300rpx;" label="封面">
 				<template #input>
 					<file-upload @upload-success="handleUploadSuccess"  />
 				</template>
@@ -29,6 +29,18 @@
 		},
 		methods: {
 			onSubmit() {
+				if(!this.taskInfo.title || this.taskInfo.title==''){
+					uni.showToast({
+						title:'请填写标题'
+					})
+					return;
+				}
+				if(!this.taskInfo.content==''){
+					uni.showToast({
+						title:'请填写内容'
+					})
+					return;
+				}
 				this.$request('/articles',"post",this.taskInfo).then(res=>{
 					uni.showToast({
 						title:'发布成功'

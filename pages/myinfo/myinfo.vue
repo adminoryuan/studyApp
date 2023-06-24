@@ -14,6 +14,11 @@
 
 		</view>
 		<view class="bedges">
+			<view class="badge" @click="toControl">
+				<text>面板控制</text>
+			</view>
+		</view>
+		<view class="bedges">
 			<view class="badge" @click="toKnowLedge">
 				<text>知识库</text>
 			</view>
@@ -59,8 +64,13 @@
 			this.selectBadgs()
 		},
 		methods: {
+			toControl(){
+				uni.navigateTo({
+					url: '/pages/control/index'
+				})
+			},
 			toKnowLedge(){
-				uni.redirectTo({
+				uni.navigateTo({
 					url:'/pages/knowledge/index'
 				})
 				uni.navigateTo({

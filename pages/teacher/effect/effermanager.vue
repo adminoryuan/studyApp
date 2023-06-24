@@ -31,7 +31,7 @@
 		
 		<van-popup v-model="appoveShow" @close="close" style="width: 80%;height: 40%;" closeable>
 			<van-cell-group>
-			  <van-field :disabled="true" v-model="appoveInfo.title" label="教师"  placeholder="请输入用户名" />
+			  <van-field :disabled="true" v-model="appoveInfo.title" label="标题"  placeholder="请输入用户名" />
 			  <van-field :disabled="true" v-model="appoveInfo.tearchName" label="评分教师"  placeholder="" />
 			  <van-field v-model="appoveInfo.score" label="评分" type="number" placeholder="请输入评分" />
 			  <van-field v-model="appoveInfo.comment" label="备注" type="textarea" placeholder="请输入备注" />
@@ -105,6 +105,7 @@
 			},
 			showScore(item){
 				console.log(item)
+				this.scoreInfo.title=item.title
 				this.scoreInfo.certificateId=item.id;
 				this.scoreInfo.studentName=item.studentName;
 				this.scoreInfo.effectName=this.getDictLabel('study_award_type',item.awardType) ;

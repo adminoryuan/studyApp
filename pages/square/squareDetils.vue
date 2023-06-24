@@ -8,6 +8,9 @@
 				<view class="publish-time">{{ formatDate(articleInfo.publishTime) }}</view>
 			</view>
 			<view class="content" v-html="articleInfo.content"></view>
+
+			<image @click="preView(articleInfo.coverImage)" :src="articleInfo.coverImage"></image>
+
 			<hb-comment ref="hbComment" @add="add" @del="del" @like="like" @focusOn="focusOn" :deleteTip="'确认删除？'"
 				:cmData="commentData" v-if="commentData"></hb-comment>
 
@@ -18,7 +21,13 @@
 </template>
 
 <script>
-	import {BASE_URL} from '@/request.js'
+	import {
+		BASE_URL
+	} from '@/request.js'
+	import {
+		ImagePreview
+	} from 'vant';
+
 	export default {
 		data() {
 			return {
@@ -73,6 +82,22 @@
 				})
 
 			},
+			preView(url) {
+				uni.previewImage({
+					current: url,
+					urls: [url],
+					longPressActions: {
+						itemList: ['发送给朋友', '保存图片'],
+						success: function(data) {
+							console.log('长按图片成功', data);
+						},
+						fail: function(err) {
+							console.log('长按图片失败', err);
+						}
+					}
+				});
+
+			},
 			add(d) {
 				this.$request('/system/comments', "post", {
 					articleId: this.articleId,
@@ -123,14 +148,16 @@
 					title: '正在加载！'
 				})
 				this.$request('/articles/' + this.articleId, "get").then(res => {
-					
-					this.articleInfo=res.data
-					this.articleInfo.content = this.articleInfo.content.replace(/\/dev-api/g, BASE_URL);
-					
+
+					this.articleInfo = res.data
 					console.log(this.articleInfo.content)
-					
-					
-					this.articleInfo.content = this.articleInfo.content.replace(/\<img/gi, '<img style="width: 100%;height:auto;"')
+					if(this.articleInfo.content==null){
+						this.articleInfo.content=""
+					}
+					this.articleInfo.content = this.articleInfo.content.replace(/\/dev-api/g, BASE_URL);
+
+					this.articleInfo.content = this.articleInfo.content.replace(/\<img/gi,
+						'<img style="width: 100%;height:auto;"')
 					// this.articleInfo.content = this.articleInfo.content.replace(/\<p/gi, '<p style="line-height: 150%;"')
 					uni.hideLoading()
 				})
